@@ -1,89 +1,83 @@
-# tp-final-ecosistema-ia-mktcomar
-Proyecto Final - Ecosistema de Automatización IA para clasificación inteligente de leads con n8n, Airtable, IA y Gmail.
-# TP Final - Ecosistema de Automatización IA
+# 🤖 Ecosistema de Automatización IA para Clasificación Inteligente de Leads
 
-## Descripción
+## Proyecto Final – Arquitectura de Flujos con IA
 
-Este proyecto corresponde a la entrega final del curso de Arquitectura de Flujos con Inteligencia Artificial.
-
-Se desarrolló un ecosistema de automatización utilizando n8n, Airtable, Gmail e Inteligencia Artificial para clasificar automáticamente leads comerciales y asistir en la generación de respuestas antes del contacto con el cliente.
+**Alumno:** Martín Marinelli
 
 ---
 
-## Tecnologías utilizadas
+# Descripción
+
+Este proyecto implementa un ecosistema de automatización desarrollado en n8n para la clasificación inteligente de leads comerciales utilizando Inteligencia Artificial.
+
+El flujo recibe automáticamente nuevos correos electrónicos desde Gmail, analiza su contenido mediante un modelo de IA, clasifica cada lead, registra la información en Airtable y solicita una validación humana antes de ejecutar la acción final.
+
+---
+
+# Tecnologías utilizadas
 
 - n8n
-- OpenRouter (LLM)
 - Gmail
+- OpenRouter
 - Airtable
-- Human in the Loop (HITL)
+- Human In The Loop (HITL)
 
 ---
 
-## Funcionamiento del flujo
+# Funcionamiento del flujo
 
-1. Llega un nuevo email a Gmail.
-2. El flujo se activa automáticamente.
-3. La IA analiza el contenido del correo.
-4. Clasifica el lead como:
-   - VIP
-   - Estándar
-   - Descartar
-5. Genera una respuesta sugerida.
-6. Guarda toda la información en Airtable.
-7. Envía un correo de aprobación al operador (Human in the Loop).
-8. El operador puede aprobar o rechazar la propuesta antes de contactar al cliente.
-
----
-
-## Arquitectura
-
-Gmail Trigger
-
-↓
-
-IA (Clasificación y generación de respuesta)
-
-↓
-
-Structured Output Parser
-
-↓
-
-Airtable (Base de datos)
-
-↓
-
-Human Approval (Gmail)
-
-↓
-
-Actualización de estado
+1. Se recibe un nuevo correo en Gmail.
+2. El contenido es enviado al modelo de IA.
+3. La IA clasifica el lead.
+4. Se genera una respuesta sugerida.
+5. La información se almacena en Airtable.
+6. Se envía un correo para aprobación humana.
+7. El flujo espera la decisión del usuario.
+8. Si el lead es aprobado:
+   - Se actualiza el estado en Airtable.
+9. Si el lead es rechazado:
+   - Se registra el rechazo en Airtable.
 
 ---
 
-## Funcionalidades
+# Arquitectura
 
-- Clasificación automática de leads
-- Generación de respuesta sugerida mediante IA
-- Registro automático en Airtable
-- Validación humana antes de enviar respuestas
-- Manejo de estados del proceso
-- Arquitectura preparada para ampliaciones futuras
+```
+Gmail
+   │
+   ▼
+IA (OpenRouter)
+   │
+   ▼
+Structured Output
+   │
+   ▼
+Airtable
+   │
+   ▼
+Human Approval
+   │
+ ┌─┴───────────┐
+ │             │
+ ▼             ▼
+Aprobado   Rechazado
+ │             │
+ ▼             ▼
+Actualizar Airtable
+```
 
 ---
 
-## Archivos incluidos
+# Archivos incluidos
 
 - flujo_n8n.json
-- Diagrama de Arquitectura.pdf
-- Capturas de pantalla
-- README.md
+- Diagrama_Arquitectura.pdf
+- Evidencias.pdf
 
 ---
 
-## Autor
+# Autor
 
 Martín Marinelli
 
-MKT.COM.AR
+Proyecto Final - Arquitectura de Flujos IA
