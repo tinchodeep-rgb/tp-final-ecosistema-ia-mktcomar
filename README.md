@@ -8,9 +8,11 @@
 
 # Descripción
 
-Este proyecto implementa un ecosistema de automatización desarrollado en n8n para la clasificación inteligente de leads comerciales utilizando Inteligencia Artificial.
+Este proyecto implementa un ecosistema de automatización desarrollado en **n8n** para la clasificación inteligente de leads comerciales utilizando Inteligencia Artificial.
 
 El flujo recibe automáticamente nuevos correos electrónicos desde Gmail, analiza su contenido mediante un modelo de IA, clasifica cada lead, registra la información en Airtable y solicita una validación humana antes de ejecutar la acción final.
+
+Además, incorpora una ruta de manejo de errores que registra automáticamente cualquier fallo de procesamiento en Airtable para garantizar la resiliencia del flujo.
 
 ---
 
@@ -18,7 +20,7 @@ El flujo recibe automáticamente nuevos correos electrónicos desde Gmail, anali
 
 - n8n
 - Gmail
-- OpenRouter
+- OpenRouter (IA)
 - Airtable
 - Human In The Loop (HITL)
 
@@ -28,21 +30,29 @@ El flujo recibe automáticamente nuevos correos electrónicos desde Gmail, anali
 
 1. Se recibe un nuevo correo en Gmail.
 2. El contenido es enviado al modelo de IA.
-3. La IA clasifica el lead.
-4. Se genera una respuesta sugerida.
-5. La información se almacena en Airtable.
+3. La IA analiza y clasifica el lead.
+4. Se genera una respuesta estructurada.
+5. La información se registra en Airtable.
 6. Se envía un correo para aprobación humana.
 7. El flujo espera la decisión del usuario.
-8. Si el lead es aprobado:
-   - Se actualiza el estado en Airtable.
-9. Si el lead es rechazado:
-   - Se registra el rechazo en Airtable.
+
+### Si el lead es aprobado
+
+- Se actualiza el estado en Airtable como **Aprobado**.
+
+### Si el lead es rechazado
+
+- Se actualiza el estado en Airtable como **Rechazado**.
+
+### Si ocurre un error
+
+- El flujo registra automáticamente el incidente en **Airtable - Log Error**.
 
 ---
 
 # Arquitectura
 
-```
+```text
 Gmail
    │
    ▼
@@ -57,12 +67,11 @@ Airtable
    ▼
 Human Approval
    │
- ┌─┴───────────┐
- │             │
- ▼             ▼
-Aprobado   Rechazado
- │             │
- ▼             ▼
+ ┌───────────────┐
+ ▼               ▼
+Aprobado     Rechazado
+ │               │
+ ▼               ▼
 Actualizar Airtable
 ```
 
@@ -70,13 +79,25 @@ Actualizar Airtable
 
 # Archivos incluidos
 
-- flujo_n8n_ecosistema_ia.json
+- flujo_n8_ecosistema_ia.json
 - Arquitectura_Ecosistema_IA.pdf
-- Carpeta /screenshots con evidencias del flujo
+- Carpeta **/screenshots** con evidencias del flujo:
 
-## Enlaces
+  - 01_flujo_principal
+  - 02_ejecucion_exitosa
+  - 03_airtable
+  - 04_human_approval
+  - 05_log_error
 
-**Base de datos Airtable (modo lectura):**
+---
+
+# Enlaces
+
+### Repositorio GitHub
+
+https://github.com/tinchodeep-rgb/tp-final-ecosistema-ia-mktcomar
+
+### Base de datos Airtable (modo lectura)
 
 https://airtable.com/appksuKFiTFJWOIn7/shrSUSKhpOs1sSde2
 
@@ -84,8 +105,6 @@ https://airtable.com/appksuKFiTFJWOIn7/shrSUSKhpOs1sSde2
 
 # Autor
 
-Martín Marinelli
+**Martín Marinelli**
 
 Proyecto Final – Arquitectura de Flujos IA
-
-Proyecto Final - Arquitectura de Flujos IA
