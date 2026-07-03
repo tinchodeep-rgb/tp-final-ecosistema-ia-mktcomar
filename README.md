@@ -70,14 +70,22 @@ Actualizar Airtable
 
 # Archivos incluidos
 
-- flujo_n8n.json
-- Diagrama_Arquitectura.pdf
-- Evidencias.pdf
+- flujo_n8n_ecosistema_ia.json
+- Arquitectura_Ecosistema_IA.pdf
+- Carpeta /screenshots con evidencias del flujo
+
+## Enlaces
+
+**Base de datos Airtable (modo lectura):**
+
+https://airtable.com/appksuKFiTFJWOIn7/shrSUSKhpOs1sSde2
 
 ---
 
 # Autor
 
 Martín Marinelli
+
+Proyecto Final – Arquitectura de Flujos IA
 
 Proyecto Final - Arquitectura de Flujos IA
